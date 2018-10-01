@@ -19,7 +19,7 @@ var schema = buildSchema(`
 
 // The root provides a resolver function for each API endpoint
 var root = {
-    rollDice: function({ numDice, numSides }) {
+    rollDice: function ({ numDice, numSides }) {
         var output = [];
         for (var i = 0; i < numDice; i++) {
             output.push(1 + Math.floor(Math.random() * (numSides || 6)));
@@ -41,7 +41,7 @@ var app = express();
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
-    graphiql: false, // 设置为 true 可以使用 GraphiQL 工具来手动执行 GraphQL 查询
+    graphiql: true, // 设置为 true 可以使用 GraphiQL 工具来手动执行 GraphQL 查询
 }));
 
 app.get('/client(\.html)?', (req, res) => {
